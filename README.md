@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TAS Outsourcing Blog Preview System
 
-## Getting Started
+A modern staging and preview environment for SEO-optimized blog articles, built with Next.js 15 and Tailwind CSS.
 
-First, run the development server:
+## 🚀 Features
+
+- **Live Preview**: Real-time preview of markdown articles with proper formatting
+- **SEO Optimization**: Metadata extraction and SEO-friendly rendering
+- **Callout Boxes**: Beautiful styled callout boxes for important information
+- **Auto-Refresh**: Hot reload when markdown files are edited
+- **Laravel Export**: API endpoints to export articles for Laravel integration
+- **Responsive Design**: Mobile-friendly interface
+- **Article Statistics**: Word count, reading time, and featured articles
+
+## 📋 Getting Started
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone [your-repo-url]
+cd blog-preview
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit http://localhost:3000 to see the preview system.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📝 Creating Articles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Articles are stored as markdown files in the parent `articles/` directory.
 
-## Learn More
+### With Frontmatter (Optional)
 
-To learn more about Next.js, take a look at the following resources:
+```yaml
+---
+title: "Complete Guide to Business Setup in Saudi Arabia"
+description: "Everything you need to know about setting up a business"
+keywords: ["saudi", "business", "setup"]
+featured: true
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Your Article Content
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 Callout Boxes
 
-## Deploy on Vercel
+Use special prefixes for styled callout boxes:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `ℹ️` or `INFO:` → Blue information box
+- `⚠️` or `WARNING:` → Yellow warning box
+- `✅` or `TIP:` → Green success box
+- `🔴` or `IMPORTANT:` → Red alert box
+- `📝` or `NOTE:` → Gray note box
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🚀 Deploy on Vercel
+
+The easiest way to deploy is using [Vercel Platform](https://vercel.com):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+
+1. Click the button above
+2. Import your GitHub repository
+3. Deploy automatically
+
+---
+
+Built for **TAS Outsourcing** - [tascoutsourcing.sa](https://tascoutsourcing.sa)
