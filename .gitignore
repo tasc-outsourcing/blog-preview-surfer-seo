@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# articles (synced from parent project)
+/articles/*.md
+!/articles/README.md

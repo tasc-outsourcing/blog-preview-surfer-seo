@@ -5,7 +5,7 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import remarkGfm from 'remark-gfm';
 
-const articlesDirectory = path.join(process.cwd(), '..', 'articles');
+const articlesDirectory = path.join(process.cwd(), 'articles');
 
 export interface ArticleMetadata {
   title: string;
