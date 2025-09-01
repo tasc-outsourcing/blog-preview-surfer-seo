@@ -3,10 +3,11 @@ import { getArticleBySlug } from '@/lib/articles';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const article = await getArticleBySlug(params.slug);
+    const resolvedParams = await params;
+    const article = await getArticleBySlug(resolvedParams.slug);
 
     if (!article) {
       return NextResponse.json(

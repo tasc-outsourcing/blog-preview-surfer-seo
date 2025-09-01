@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Export Functionality</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        .instructions {
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #92400e;
+        }
+        .instructions ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>📝 Article Export Test Page</h1>
+        
+        <div class="instructions">
+            <h3>How to Test the Export Feature:</h3>
+            <ol>
+                <li>Open your blog preview at: <a href="http://localhost:3001" target="_blank">http://localhost:3001</a></li>
+                <li>Click on any article to view it</li>
+                <li>Look for the "Export HTML" button in the top-right corner</li>
+                <li>Click "Export HTML" to download the HTML file</li>
+                <li>Or use the sidebar "📋 Copy HTML" button to copy to clipboard</li>
+                <li>Paste the HTML directly into Surfer SEO's content editor</li>
+            </ol>
+        </div>
+
+        <h2>Test Export API Directly:</h2>
+        <p>Select an article to test the export functionality:</p>
+        
+        <button onclick="testExport('business-setup-saudi-arabia-jurisdictions')">
+            Test Export: Business Setup Saudi Arabia
+        </button>
+        
+        <div id="status"></div>
+        
+        <h3>Export Preview:</h3>
+        <textarea id="preview" style="width: 100%; height: 200px; margin-top: 10px;" readonly placeholder="Export content will appear here..."></textarea>
+    </div>
+
+    <script>
+        async function testExport(slug) {
+            const statusDiv = document.getElementById('status');
+            const previewArea = document.getElementById('preview');
+            
+            statusDiv.innerHTML = '<div class="status">Testing export functionality...</div>';
+            previewArea.value = '';
+            
+            try {
+                // Note: Update port if your server is running on a different port
+                const port = 3001; // Change this if needed
+                const response = await fetch(`http://localhost:${port}/api/export/${slug}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    statusDiv.innerHTML = '<div class="status success">✅ Export API is working correctly! The article can be exported.</div>';
+                    
+                    // Show a preview of the exported content
+                    const htmlContent = data.exports.htmlContent || 'No HTML content available';
+                    previewArea.value = htmlContent.substring(0, 2000) + (htmlContent.length > 2000 ? '\n\n... (truncated for preview)' : '');
+                    
+                    // Offer to download
+                    const downloadBtn = document.createElement('button');
+                    downloadBtn.textContent = '⬇️ Download Full HTML';
+                    downloadBtn.style.marginTop = '10px';
+                    downloadBtn.onclick = () => downloadHTML(slug, htmlContent);
+                    statusDiv.appendChild(downloadBtn);
+                } else {
+                    throw new Error(data.error || 'Export failed');
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `<div class="status error">❌ Export failed: ${error.message}<br><br>Make sure the dev server is running at http://localhost:3000</div>`;
+                console.error('Export test failed:', error);
+            }
+        }
+        
+        function downloadHTML(slug, content) {
+            const blob = new Blob([content], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${slug}-export.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

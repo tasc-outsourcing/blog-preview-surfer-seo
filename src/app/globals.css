@@ -151,4 +151,8 @@
   .btn-primary {
     @apply bg-blue-600 text-white hover:bg-blue-700;
   }
+
+  .btn-secondary {
+    @apply bg-gray-600 text-white hover:bg-gray-700;
+  }
 }
