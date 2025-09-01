@@ -1,10 +1,12 @@
-# TAS Outsourcing Blog Preview System
+# TAS Outsourcing Blog Preview System with Surfer SEO Export
 
-A modern staging and preview environment for SEO-optimized blog articles, built with Next.js 15 and Tailwind CSS.
+A modern staging and preview environment for SEO-optimized blog articles, built with Next.js 15 and Tailwind CSS, featuring direct export to Surfer SEO.
 
 ## 🚀 Features
 
 - **Live Preview**: Real-time preview of markdown articles with proper formatting
+- **Surfer SEO Export**: One-click HTML export optimized for Surfer SEO's content editor
+- **Quick Copy to Clipboard**: Instant copy HTML for pasting into SEO tools
 - **SEO Optimization**: Metadata extraction and SEO-friendly rendering
 - **Callout Boxes**: Beautiful styled callout boxes for important information
 - **Auto-Refresh**: Hot reload when markdown files are edited
@@ -46,6 +48,22 @@ featured: true
 
 # Your Article Content
 ```
+
+## 🎯 Surfer SEO Export
+
+### Method 1: Download HTML File
+1. Navigate to any article
+2. Click **"📥 Export for Surfer SEO"** button in the top-right
+3. HTML file downloads automatically
+4. Upload to Surfer SEO's content editor
+
+### Method 2: Quick Copy to Clipboard
+1. Navigate to any article
+2. Click **"📋 Quick Copy"** button
+3. Paste directly into Surfer SEO (Ctrl/Cmd + V)
+
+### Testing Export
+Open `test-export.html` in your browser to test the export API directly.
 
 ## 🎨 Callout Boxes
 
