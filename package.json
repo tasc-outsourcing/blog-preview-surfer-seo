@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "add-article": "./scripts/add-article.sh",
+    "deploy": "git add . && git commit -m 'Update articles' && git push"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.7",
