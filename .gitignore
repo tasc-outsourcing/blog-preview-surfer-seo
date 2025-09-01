@@ -40,6 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# articles (synced from parent project)
+# articles (keep sample articles for deployment)
 /articles/*.md
 !/articles/README.md
+!/articles/sample-*.md
+!/articles/business-setup-saudi-arabia-jurisdictions.md
